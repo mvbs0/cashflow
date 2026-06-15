@@ -1,7 +1,8 @@
 package com.finances.cashflow.enums;
 
 public enum TipoPagamento {
-    Credito,
-    Debito,
-    Pix
+    //criar funçao para taxa fixa de 15% para todos os metodos
+    CREDITO,
+    DEBITO,
+    PIX
 }

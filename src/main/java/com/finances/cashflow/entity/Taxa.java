@@ -17,7 +17,7 @@ public class Taxa {
     @Column(name = "tipo_pagamento",nullable = false)
     private TipoPagamento tipoPagamento;
 
-    @Column
+    @Column(nullable = true)
     private Integer parcelas;
 
     @Column(name = "taxa_fixa", nullable = false)
