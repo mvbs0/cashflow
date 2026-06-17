@@ -48,4 +48,21 @@ public class TaxaService {
         return taxaRepository.findById(id).orElseThrow(() -> new RuntimeException("Taxa não enontrada com id: " + id));
 
     }
+    public Taxa atualizar (Long id, TaxaDTO dto){
+        //buscar no no banco
+        Taxa taxa = buscarPorId(id);
+
+        //converter dto para entity
+        taxa.setTipoPagamento(dto.getTipoPagamento());
+        taxa.setParcelas(dto.getParcelas());
+        taxa.setTaxaFixa(dto.getTaxaFixa());
+        taxa.setTaxaVariavel(dto.getTaxaVariavel());
+
+        return taxaRepository.save(taxa);
+    }
+    public void deletar (Long id){
+        Taxa taxa = buscarPorId(id);
+        taxaRepository.deleteById(id);
+
+    }
 }

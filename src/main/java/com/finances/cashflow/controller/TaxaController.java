@@ -33,4 +33,14 @@ public class TaxaController {
         Taxa taxa = taxaService.buscarPorId(id);
         return ResponseEntity.ok(taxa);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<Taxa> atualizar(@PathVariable Long id, @RequestBody TaxaDTO dto){
+        Taxa salva = taxaService.atualizar(id, dto);
+        return ResponseEntity.ok(salva);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar (@PathVariable Long id) {
+        taxaService.deletar(id);
+        return ResponseEntity.noContent().build();
+    }
 }
