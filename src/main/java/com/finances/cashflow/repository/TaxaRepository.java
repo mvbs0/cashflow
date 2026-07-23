@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface TaxaRepository extends JpaRepository<Taxa, Long> {
     List<Taxa> findByTipoPagamento(TipoPagamento tipoPagamento);
+    List<Taxa> findByTipoPagamentoAndParcelas(TipoPagamento tipoPagamento, Integer  parcelas );
 
 }

@@ -22,10 +22,10 @@ public class VendaService {
         Double totalBruto = credito + debito + creditoParcelado + pix;
         venda.setTotalBruto(totalBruto);
 
-        Double taxaDebito = venda.getValorDebito() * taxaRepository.findByTipoPagamento(TipoPagamento.DEBITO).get(0).getTaxaVariavel() + TipoPagamento.DEBITO.getTaxaFixa();
-        Double taxaCredito = venda.getValorCredito() * taxaRepository.findByTipoPagamento(TipoPagamento.CREDITO).get(0).getTaxaVariavel() + TipoPagamento.CREDITO.getTaxaFixa();
-        Double taxaPix = venda.getValorPix() * taxaRepository.findByTipoPagamento(TipoPagamento.PIX).get(0).getTaxaVariavel() + TipoPagamento.PIX.getTaxaFixa();
-
+        Double taxaDebito = debito * taxaRepository.findByTipoPagamento(TipoPagamento.DEBITO).get(0).getTaxaVariavel() + TipoPagamento.DEBITO.getTaxaFixa();
+        Double taxaCredito = credito * taxaRepository.findByTipoPagamento(TipoPagamento.CREDITO).get(0).getTaxaVariavel() + TipoPagamento.CREDITO.getTaxaFixa();
+        Double taxaPix = pix * taxaRepository.findByTipoPagamento(TipoPagamento.PIX).get(0).getTaxaVariavel() + TipoPagamento.PIX.getTaxaFixa();
+        Double taxaCreditoParcelado = creditoParcelado * taxaRepository.findByTipoPagamentoAndParcelas(TipoPagamento.CREDITO, venda.getQuantidadeParcelas()).get(0).getTaxaVariavel() + TipoPagamento.CREDITO.getTaxaFixa();
         return venda;
     }
 
